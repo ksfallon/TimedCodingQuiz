@@ -1,7 +1,17 @@
-var startButton = document.createElementId('start-button');
-var resetButton = document.createElementId('reset-button');
-var timerContainer = document.createElement('timer');
+var headerContainer = document.createElement('.header-container');
+var startButton = document.createElementId('#start-button');
+var resetButton = document.createElementId('#reset-button');
+var timerContainer = document.createElement('#timer');
 
+function startQuiz(){
+    // click start button
+    // hide headerCounter
+    // make questions visible
+}
+
+//declare interval var at top of page
+//then set value to interval = setInterval(function(){})etc
+// clearInterval(name of the variable you want to stop)
 function quizQuestions(){}
 
 function showScore(){}
@@ -105,4 +115,27 @@ var codingQuestions = [
         },
         correctAnswer: "1"
     },
-]
+];
+
+// do one div that holds all of our questions and just change what is displayed
+
+// function quizQuestions(){
+//     //this will store the html output
+//     var output = [];
+
+//     //for each question I need
+//     codingQuestions.forEach(
+//         (currentQuestion, questionNumber) => {
+
+//             //variable to store the list of possible answers
+//             var answers = [];
+
+//             // and for each available answer
+//             for (number in currentQuestion.answers){
+//                 answers.push(
+
+//                 )
+//             }
+//         }
+//     )
+// }
