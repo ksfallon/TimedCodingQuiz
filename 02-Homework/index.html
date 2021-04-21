@@ -14,15 +14,28 @@
         <button id="start-button">Start</button>
     </header>
 
-    <div id ="timer" style="visibility: hidden;"></div>
-
-    <div id="questions" style="visibility: hidden;"></div>
-
-
+    <div class ="timer-container" style="visibility: hidden;">
+      <p>Time</p>
+      <div id = "timer-count">75</div>
     </div>
-    <button id ="reset" style="visibility: hidden;">Reset Score</button>
-    <button id ="goBack" style="visibility: hidden;">Go Back</button>
+
+    <div class="question-container" style="visibility: hidden;">
+      <div id = "question"></div>
+      <div id = "answers"></div>
+      <div id = "correct-answer"></div>
+      <!-- <!-- need to have HTML so when the answer is correc or incorrect i can use javascript to display this -->
     </div>
+
+    <div class="finalscore-container">
+        <div id = finalscore>Your final score</div>
+        <prompt id = intials>Enter Your Intials</prompt>
+    </div>
+
+    </div class='fighscore-container'>
+      <button id ="clear-button" style="visibility: hidden;">Clear High Scores</button>
+      <button id ="goBack" style="visibility: hidden;">Go Back</button>
+    </div>
+
     <script src="Assets/js/script.js"></script>
 </body>
 </html>
