@@ -1,9 +1,14 @@
 var headerContainer = document.createElement('.header-container');
-var startButton = document.createElementId('#start-button');
-var resetButton = document.createElementId('#reset-button');
-var timerContainer = document.createElement('#timer');
+var startButton = document.createElementId('start-button');
+var resetButton = document.createElementId('reset-button');
+var goBackButton = document.createElement('goBack');
+var timerContainer = document.createElement('timer');
+
+var timer;
 
 function startQuiz(){
+    document.getElementById('.header-container').style.visibility = 'hidden';
+    document.getElementById('timer-container').style.visibility = 'visible';
     // click start button
     // hide headerCounter
     // make questions visible
