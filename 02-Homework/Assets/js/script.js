@@ -4,8 +4,8 @@ var timerContainer = document.querySelector('.timer-container');
 var timerElement = document.querySelector('.timer-count');
 var questionContainer = document.querySelector('.question-container');
 var quizQuestions = document.querySelector('question');
-var quizAnswers = document.querySelector('answers');
-var correctAnswers = document.querySelector('correct-answer')
+var quizChoices = document.querySelector('choices');
+var correctAnswers = document.querySelector('correct')
 var finalscoreContainer = document.querySelector('.finalscore-container')
 var finalScore = document.querySelector('finalscore');
 var playerInitials = document.querySelector('initials');
@@ -21,100 +21,82 @@ var storedHighScores = [];
 var codingQuestions = [
     {
         question: "Which answer is correct",
-        answers: {
-            1: "INCORRECT",
-            2: "INCORRECT",
-            3: "CORRECT",
-            4: "INCORRECT"
-        },
-        correctAnswer: "3"
+        choices1: "INCORRECT",
+        choice2: "INCORRECT",
+        choice3: "CORRECT",
+        choice4: "INCORRECT",
+        correct: "3"
     },
     {
         question: "Which answer is FALSE",
-        answers: {
-            1: "FALSE",
-            2: "TRUE",
-            3: "TRUE",
-            4: "TRUE"
-        },
-        correctAnswer: "1"
+        choice1: "FALSE",
+        choice2: "TRUE",
+        choice3: "TRUE",
+        choice4: "TRUE",
+        correct: "1"
     },
     {
         question: "Which answer is says maybe",
-        answers: {
-            1: "ALWAYS",
-            2: "ALWAYS",
-            3: "ALWAYS",
-            4: "MAYBE"
-        },
-        correctAnswer: "4"
+        choice1: "ALWAYS",
+        choice2: "ALWAYS",
+        choice3: "ALWAYS",
+        choice4: "MAYBE",
+        correct: "4"
     },
     {
         question: "Number 1 is correct",
-        answers: {
-            1: "CORRECT",
-            2: "INCORRECT",
-            3: "INCORRECT",
-            4: "INCORRECT"
-        },
-        correctAnswer: "1"
+        choice1: "CORRECT",
+        choice2: "INCORRECT",
+        choice3: "INCORRECT",
+        choice4: "INCORRECT",
+        correct: "1"
     },
     {
         question: "Number 2 is correct",
-        answers: {
-            1: "INCORRECT",
-            2: "CORRECT",
-            3: "INCORRECT",
-            4: "INCORRECT"
-        },
-        correctAnswer: "2"
+        choice1: "INCORRECT",
+        choice2: "CORRECT",
+        choice3: "INCORRECT",
+        choice4: "INCORRECT",
+        correct: "2"
     },
     {
         question: "Number 4 is correct",
-        answers: {
-            1: "INCORRECT",
-            2: "INCORRECT",
-            3: "INCORRECT",
-            4: "CORRECT"
-        },
-        correctAnswer: "4"
+        choice1: "INCORRECT",
+        choice2: "INCORRECT",
+        choice3: "INCORRECT",
+        choice4: "CORRECT",
+        correct: "4"
     },
     {
         question: "Number 2 is PERFECT",
-        answers: {
-            1: "INCORRECT",
-            2: "PREFECT",
-            3: "INCORRECT",
-            4: "INCORRECT"
-        },
-        correctAnswer: "2"
+        choice1: "INCORRECT",
+        choice2: "PREFECT",
+        choice3: "INCORRECT",
+        choice4: "INCORRECT",
+        correct: "2"
     },
     {
         question: "Number 1 is LOVE",
-        answers: {
-            1: "LOVE",
-            2: "INCORRECT",
-            3: "INCORRECT",
-            4: "INCORRECT"
-        },
-        correctAnswer: "1"
+        choices1: "LOVE",
+        choice2: "INCORRECT",
+        choice3: "INCORRECT",
+        choice4: "INCORRECT",
+        correct: "1"
     },
     {
         question: "Number 1 is the best",
-        answers: {
-            1: "BEST",
-            2: "INCORRECT",
-            3: "INCORRECT",
-            4: "INCORRECT"
-        },
-        correctAnswer: "1"
+        choice1: "BEST",
+        choice2: "INCORRECT",
+        choice3: "INCORRECT",
+        choice4: "INCORRECT",
+        correct: "1"
     },
 ];
 
 // init runs right as the window is opened
 function init(){
     
-    //get previous high scores - should this be later on tho?
+    //**get previous high scores - should this be later on tho?
     getHighScores()
 }
 
@@ -135,14 +117,19 @@ function getHighScores(){
 }
 
 function startQuiz(){
-    // click start button
+     // hide headerCounter
     document.getElementById('.header-container').style.visibility = 'hidden';
-    document.getElementById('.timer-container').style.visibility = 'visible';
-    
-    startTimer()
-    quizQuestions()
-    // hide headerCounter
+    // click start button
+    timerCount = 75;
+    //need to prevent start button from being clicked while game is in progress
+    startButton.disabled = true;
     // make questions visible
+   // document.getElementById('.timer-container').style.visibility = 'visible';
+     //need quizQuestions to pop up
+   // quizQuestions()
+    //need timer to start immediately
+    startTimer()
+    
 }
 
 function startTimer(){
@@ -158,6 +145,11 @@ function startTimer(){
 }
 
 startButton.addEventListener("click", startQuiz);
+
+//show first question
+function quizQuestions(){
+
+};
 
 function setScore(){}
 // localStorage.setItem()
@@ -178,8 +170,7 @@ function resetGame(){}
 
 // function showScore(){}
 
-//show first question
-// quizQuestions();
+
 
 //display score at end if timer runs out or no more questions left
 //NEED TO UNDERSTAND HOW TO MAKE SUBMIT BUTTON AND HOW TO CALCULATE SCORE
