@@ -97,39 +97,19 @@ var codingQuestions = [
 var counter = 0;
 var lastQuestion = codingQuestions.length - 1;
 // init runs right as the window is opened
-function init(){
-    
-    //**get previous high scores - should this be later on tho?
-    getHighScores()
-}
+startButton.addEventListener("click", startQuiz);
 
-//need to create a storedHighScores variable
-function getHighScores(){
-  //get stored array of intials and scores from client storage.
-  var storedHighScores = localStorage.getItem('highScores');
-  //if stored value doesn't exist, show nothing
-  if (storedHighScores === null) {
-      highScoreList = [];
-  }  else {
-    //   if intials and high scores are retrieved from client storage set highscore list to this array
-    highScoreList = storedHighScores
-  }
-  //render highScoreList to page
-  //**should i show it as an array or do two separate getHighScores and getInitals?
-  finalscoreContainer.textContent = highScoreList;
-}
 
 function startQuiz(){
      // hide headerCounter
-    document.getElementsByClassName('header-container').style = 'hidden';
+    headerContainer.style.display = 'none';
+    //show timer
+    timerContainer.style.display = 'block';
     // click start button
     timerCount = 75;
-    //need to prevent start button from being clicked while game is in progress
-    startButton.disabled = true;
     // make questions visible
-    document.getElementsByClassName('timer-container').style = 'visible';
      //need quizQuestions to pop up
-    //startQuestions();
+    startQuestions();
     //need timer to start immediately
     startTimer();
     
@@ -148,7 +128,7 @@ function startTimer(){
   }, 1000);
 }
 
-startButton.addEventListener("click", startQuiz);
+
 
 //show first question
 function startQuestions(){
@@ -171,13 +151,29 @@ function startQuestions(){
 //     }
 // }
 
-function setScore(){}
+function showScore(){}
 // localStorage.setItem()
-    // if select correct answer add points to localstorage
-
-function highscoreDisplay(){}
-// localStorage.setItem()
-// add name from prompt and high score to list.
+//
+//need to create a storedHighScores variable
+function getHighScores(){
+    //get stored array of intials and scores from client storage.
+    var storedHighScores = localStorage.getItem('highScores');
+    //if stored value doesn't exist, show nothing
+    if (storedHighScores === null) {
+        highScoreList = [];
+    }  else {
+      //   if intials and high scores are retrieved from client storage set highscore list to this array
+      highScoreList = storedHighScores
+    }
+    //render highScoreList to page
+    //**should i show it as an array or do two separate getHighScores and getInitals?
+    finalscoreContainer.textContent = highScoreList;
+  }
+function init(){
+    
+        //**get previous high scores - should this be later on tho?
+        getHighScores()
+}
 
 function resetGame(){}
 // will take you back to home screen with game instructions
