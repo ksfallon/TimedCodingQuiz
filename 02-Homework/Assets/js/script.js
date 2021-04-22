@@ -18,6 +18,8 @@ var goBackButton = document.querySelector('goBack');
 var timer;
 var timerCount;
 var storedHighScores = [];
+var intialsArray = [];
+var scoreArray = [];
 
 // questions array for quiz: question, answers, correct answer
 var codingQuestions = [
@@ -95,6 +97,7 @@ var codingQuestions = [
     },
 ];
 var counter = 0;
+var questionIndex = 0;
 var lastQuestion = codingQuestions.length - 1;
 // init runs right as the window is opened
 startButton.addEventListener("click", startQuiz);
@@ -111,6 +114,7 @@ function startQuiz(){
      //need quizQuestions to pop up
     startQuestions();
     //need timer to start immediately
+    quizProgress ();
     startTimer();
     
 }
@@ -132,24 +136,39 @@ function startTimer(){
 
 //show first question
 function startQuestions(){
-    var quest = codingQuestions[counter];
+    if(questionIndex > lastQuestion){
+        //show final score
 
-    counter++
-    question.innerHTML = quest.question;
-    choice1.innerHTML = quest.choice1;
-    choice2.innerHTML = quest.choice2;
-    choice3.innerHTML = quest.choice3;
-    choice4.innerHTML = quest.choice4;
+    }else{
+        var qa = codingQuestions[questionIndex]
+        question.innerHTML = "<p>" +qa.question + "</p>"
+        choice1.innerHTML = qa.choice1
+        choice2.innerHTML = qa.choice2
+        choice3.innerHTML = qa.choice3
+        choice4.innerHTML = qa.choice4
+    }
 
-    //if choice is === correct say correct and show next question
+    // questionContainer.innerHTML = ""
+    // const questionObj = codingQuestions[questionIndex]
+
+    // const questionE1 = questionObj.question
+
+    
     // else say wrong, subtract 10 seconds and show next question
 };
 
-// function quizProgress (){
+function quizProgress (choice){
 //     for (var questIndex = 0; questIndex <= lastQuestion; questIndex++){
 //         ProgressEvent.innerHTML += "<div class='prog' id="+ qIndex +"></div>";
 //     }
-// }
+//if choice is === correct say correct and show next question
+  if(codingQuestions[questionIndex].correct == choice){
+      questionIndex++
+      startQuestions()
+      //say correct
+  } else{}
+  // else say wrong, subtract 10 seconds and show next question
+}
 
 function showScore(){}
 // localStorage.setItem()
