@@ -1,11 +1,13 @@
 var headerContainer = document.querySelector('.header-container');
-var startButton = document.querySelector('.start-button');
+var startButton = document.querySelector('.start');
 var timerContainer = document.querySelector('.timer-container');
 var timerElement = document.querySelector('.timer-count');
 var questionContainer = document.querySelector('.question-container');
-var quizQuestions = document.querySelector('question');
-var quizChoices = document.querySelector('choices');
-var correctAnswers = document.querySelector('correct')
+var question = document.querySelector('question');
+var choice1 = document.querySelector('choice1');
+var choice2 = document.querySelector('choice2');
+var choice3 = document.querySelector('choice3');
+var choice4 = document.querySelector('choice4');
 var finalscoreContainer = document.querySelector('.finalscore-container')
 var finalScore = document.querySelector('finalscore');
 var playerInitials = document.querySelector('initials');
@@ -21,78 +23,79 @@ var storedHighScores = [];
 var codingQuestions = [
     {
         question: "Which answer is correct",
-        choices1: "INCORRECT",
-        choice2: "INCORRECT",
-        choice3: "CORRECT",
-        choice4: "INCORRECT",
-        correct: "3"
+        choices1: "1. INCORRECT",
+        choice2: "2. INCORRECT",
+        choice3: "3. CORRECT",
+        choice4: "4. INCORRECT",
+        correct: "choice3"
     },
     {
         question: "Which answer is FALSE",
-        choice1: "FALSE",
-        choice2: "TRUE",
-        choice3: "TRUE",
-        choice4: "TRUE",
-        correct: "1"
+        choice1: "1. FALSE",
+        choice2: "2. TRUE",
+        choice3: "3. TRUE",
+        choice4: "4. TRUE",
+        correct: "choice1"
     },
     {
         question: "Which answer is says maybe",
-        choice1: "ALWAYS",
-        choice2: "ALWAYS",
-        choice3: "ALWAYS",
-        choice4: "MAYBE",
-        correct: "4"
+        choice1: "1. ALWAYS",
+        choice2: "2. ALWAYS",
+        choice3: "3. ALWAYS",
+        choice4: "4. MAYBE",
+        correct: "choice4"
     },
     {
         question: "Number 1 is correct",
-        choice1: "CORRECT",
-        choice2: "INCORRECT",
-        choice3: "INCORRECT",
-        choice4: "INCORRECT",
-        correct: "1"
+        choice1: "1. CORRECT",
+        choice2: "2. INCORRECT",
+        choice3: "3. INCORRECT",
+        choice4: "4. INCORRECT",
+        correct: "choice1"
     },
     {
         question: "Number 2 is correct",
-        choice1: "INCORRECT",
-        choice2: "CORRECT",
-        choice3: "INCORRECT",
-        choice4: "INCORRECT",
-        correct: "2"
+        choice1: "1. INCORRECT",
+        choice2: "2. CORRECT",
+        choice3: "3. INCORRECT",
+        choice4: "4. INCORRECT",
+        correct: "choice2"
     },
     {
         question: "Number 4 is correct",
-        choice1: "INCORRECT",
-        choice2: "INCORRECT",
-        choice3: "INCORRECT",
-        choice4: "CORRECT",
-        correct: "4"
+        choice1: "1. INCORRECT",
+        choice2: "2. INCORRECT",
+        choice3: "3. INCORRECT",
+        choice4: "4. CORRECT",
+        correct: "choice4"
     },
     {
         question: "Number 2 is PERFECT",
-        choice1: "INCORRECT",
-        choice2: "PREFECT",
-        choice3: "INCORRECT",
-        choice4: "INCORRECT",
-        correct: "2"
+        choice1: "1. INCORRECT",
+        choice2: "2. PREFECT",
+        choice3: "3. INCORRECT",
+        choice4: "4. INCORRECT",
+        correct: "choice2"
     },
     {
         question: "Number 1 is LOVE",
-        choices1: "LOVE",
-        choice2: "INCORRECT",
-        choice3: "INCORRECT",
-        choice4: "INCORRECT",
-        correct: "1"
+        choices1: "1. LOVE",
+        choice2: "2. INCORRECT",
+        choice3: "3. INCORRECT",
+        choice4: "4. INCORRECT",
+        correct: "choice1"
     },
     {
         question: "Number 1 is the best",
-        choice1: "BEST",
-        choice2: "INCORRECT",
-        choice3: "INCORRECT",
-        choice4: "INCORRECT",
-        correct: "1"
+        choice1: "1. BEST",
+        choice2: "2. INCORRECT",
+        choice3: "3. INCORRECT",
+        choice4: "4. INCORRECT",
+        correct: "choice1"
     },
 ];
-
+var counter = 0;
+var lastQuestion = codingQuestions.length - 1;
 // init runs right as the window is opened
 function init(){
     
@@ -118,17 +121,17 @@ function getHighScores(){
 
 function startQuiz(){
      // hide headerCounter
-    document.getElementById('.header-container').style.visibility = 'hidden';
+    document.getElementsByClassName('header-container').style = 'hidden';
     // click start button
     timerCount = 75;
     //need to prevent start button from being clicked while game is in progress
     startButton.disabled = true;
     // make questions visible
-   // document.getElementById('.timer-container').style.visibility = 'visible';
+    document.getElementsByClassName('timer-container').style = 'visible';
      //need quizQuestions to pop up
-   // quizQuestions()
+    //startQuestions();
     //need timer to start immediately
-    startTimer()
+    startTimer();
     
 }
 
@@ -137,6 +140,7 @@ function startTimer(){
     timerCount--;
     timerElement.textContent = timerCount;
     if (timerCount ===0) {
+        alert("Time is up!")
         clearInterval(timer);
         gameOver();
     }
@@ -147,9 +151,25 @@ function startTimer(){
 startButton.addEventListener("click", startQuiz);
 
 //show first question
-function quizQuestions(){
+function startQuestions(){
+    var quest = codingQuestions[counter];
 
+    counter++
+    question.innerHTML = quest.question;
+    choice1.innerHTML = quest.choice1;
+    choice2.innerHTML = quest.choice2;
+    choice3.innerHTML = quest.choice3;
+    choice4.innerHTML = quest.choice4;
+
+    //if choice is === correct say correct and show next question
+    // else say wrong, subtract 10 seconds and show next question
 };
+
+// function quizProgress (){
+//     for (var questIndex = 0; questIndex <= lastQuestion; questIndex++){
+//         ProgressEvent.innerHTML += "<div class='prog' id="+ qIndex +"></div>";
+//     }
+// }
 
 function setScore(){}
 // localStorage.setItem()
