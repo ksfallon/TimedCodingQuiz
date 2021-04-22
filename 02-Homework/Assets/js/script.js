@@ -3,11 +3,12 @@ var startButton = document.querySelector('.start');
 var timerContainer = document.querySelector('.timer-container');
 var timerElement = document.querySelector('.timer-count');
 var questionContainer = document.querySelector('.question-container');
-var question = document.querySelector('question');
-var choice1 = document.querySelector('choice1');
-var choice2 = document.querySelector('choice2');
-var choice3 = document.querySelector('choice3');
-var choice4 = document.querySelector('choice4');
+var question = document.querySelector('#question');
+var choice1 = document.getElementById('choice1');
+console.log("choice1", choice1)
+var choice2 = document.getElementById('choice2');
+var choice3 = document.getElementById('choice3');
+var choice4 = document.getElementById('choice4');
 var finalscoreContainer = document.querySelector('.finalscore-container')
 var finalScore = document.querySelector('finalscore');
 var playerInitials = document.querySelector('initials');
@@ -18,14 +19,14 @@ var goBackButton = document.querySelector('goBack');
 var timer;
 var timerCount;
 var storedHighScores = [];
-var intialsArray = [];
-var scoreArray = [];
+var intialList ='';
+var finalScores = '';
 
 // questions array for quiz: question, answers, correct answer
 var codingQuestions = [
     {
         question: "Which answer is correct",
-        choices1: "1. INCORRECT",
+        choice1: "1. INCORRECT",
         choice2: "2. INCORRECT",
         choice3: "3. CORRECT",
         choice4: "4. INCORRECT",
@@ -108,13 +109,14 @@ function startQuiz(){
     headerContainer.style.display = 'none';
     //show timer
     timerContainer.style.display = 'block';
+    questionContainer.style.display = 'block';
     // click start button
     timerCount = 75;
     // make questions visible
      //need quizQuestions to pop up
     startQuestions();
     //need timer to start immediately
-    quizProgress ();
+    //quizProgress ();
     startTimer();
     
 }
@@ -139,13 +141,13 @@ function startQuestions(){
     if(questionIndex > lastQuestion){
         //show final score
 
-    }else{
-        var qa = codingQuestions[questionIndex]
-        question.innerHTML = "<p>" +qa.question + "</p>"
-        choice1.innerHTML = qa.choice1
-        choice2.innerHTML = qa.choice2
-        choice3.innerHTML = qa.choice3
-        choice4.innerHTML = qa.choice4
+    } else {
+        var y = codingQuestions[questionIndex]
+        question.innerHTML = "<p>" + y.question + "</p>"
+        choice1.innerHTML = y.choice1
+        choice2.innerHTML = y.choice2
+        choice3.innerHTML = y.choice3
+        choice4.innerHTML = y.choice4
     }
 
     // questionContainer.innerHTML = ""
@@ -164,10 +166,12 @@ function quizProgress (choice){
 //if choice is === correct say correct and show next question
   if(codingQuestions[questionIndex].correct == choice){
       questionIndex++
-      startQuestions()
       //say correct
+      //add 5 points
   } else{}
-  // else say wrong, subtract 10 seconds and show next question
+  // else say wrong, 
+  //subtract 10 seconds and show next question
+  //timerCount -=5;
 }
 
 function showScore(){}
