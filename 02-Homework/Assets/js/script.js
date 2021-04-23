@@ -154,7 +154,7 @@ choices[i].addEventListener("click", function() {
 
     if (correctAnswer === this.getAttribute('data-id')) {
         message.textContent = ("correct!")
-        // local storage add 5 points
+        // window.localStorage.setItem('score + 5') ?
 
     } else {
         message.textContent = ("incorrect")
@@ -199,8 +199,6 @@ function showScore(){
 //     //render highScoreList to page
 //     //**should i show it as an array or do two separate getHighScores and getInitals?
 //     finalscoreContainer.textContent = highScoreList;
-//   }
-// function init(){
     
 //         //**get previous high scores - should this be later on tho?
 //         getHighScores()
