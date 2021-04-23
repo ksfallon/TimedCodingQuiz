@@ -1,18 +1,20 @@
-var headerContainer = document.getElementsByClassName('header-container');
-var startButton = document.getElementsByClassName('start');
-var timerContainer = document.getElementsByClassName('timer-container');
-var timerElement = document.getElementsByClassName('timer-count');
-var questionContainer = document.getElementsByClassName('question-container');
+var headerContainer = document.getElementById('header-container');
+console.log("headercontainer", headerContainer)
+var startButton = document.getElementById('start');
+var timerContainer = document.getElementById('timer-container');
+var timerElement = document.getElementById('timer-count');
+var questionContainer = document.getElementById('question-container');
 var question = document.getElementById('question');
+var choice = document.getElementsByClassName('choice');
 var choice1 = document.getElementById('choice1');
 console.log("choice1", choice1)
 var choice2 = document.getElementById('choice2');
 var choice3 = document.getElementById('choice3');
 var choice4 = document.getElementById('choice4');
-var finalscoreContainer = document.getElementsByClassName('.finalscore-container')
+var finalscoreContainer = document.getElementById('finalscore-container')
 var finalScore = document.getElementById('finalscore');
 var playerInitials = document.getElementById('initials');
-var highscoreContainer = document.getElementsByClassName('.highscore-container');
+var highscoreContainer = document.getElementById('highscore-container');
 var clearButton = document.getElementById('clear-button');
 var goBackButton = document.getElementById('goBack');
 
@@ -114,7 +116,7 @@ function startQuiz(){
     timerCount = 75;
     // make questions visible
      //need quizQuestions to pop up
-    startQuestions();
+     questionDisplay();
     //need timer to start immediately
     //quizProgress ();
     startTimer();
@@ -133,30 +135,15 @@ function startTimer(){
 
   }, 1000);
 }
-
-
-
 //show first question
-function startQuestions(){
-    if(questionIndex > lastQuestion){
-        //show final score
+function questionDisplay(){
 
-    } else {
-        var y = codingQuestions[questionIndex]
-        question.innerHTML = "<p>" + y.question + "</p>"
-        choice1.innerHTML = y.choice1
-        choice2.innerHTML = y.choice2
-        choice3.innerHTML = y.choice3
-        choice4.innerHTML = y.choice4
-    }
-
-    // questionContainer.innerHTML = ""
-    // const questionObj = codingQuestions[questionIndex]
-
-    // const questionE1 = questionObj.question
-
-    
-    // else say wrong, subtract 10 seconds and show next question
+    console.log('display questions' , codingQuestions[counter].choice1);
+    question.textContent = codingQuestions[counter].question
+    choice1.textContent = codingQuestions[counter].choice1
+    choice2.textContent = codingQuestions[counter].choice2
+    choice3.textContent = codingQuestions[counter].choice3
+    choice4.textContent = codingQuestions[counter].choice4
 };
 
 function quizProgress (choice){
