@@ -5,7 +5,7 @@ var timerContainer = document.getElementById('timer-container');
 var timerElement = document.getElementById('timer-count');
 var questionContainer = document.getElementById('question-container');
 var question = document.getElementById('question');
-var choice = document.getElementsByClassName('choice');
+var choices = document.getElementsByClassName('choice');
 var choice1 = document.getElementById('choice1');
 console.log("choice1", choice1)
 var choice2 = document.getElementById('choice2');
@@ -14,6 +14,7 @@ var choice4 = document.getElementById('choice4');
 var finalscoreContainer = document.getElementById('finalscore-container')
 var finalScore = document.getElementById('finalscore');
 var playerInitials = document.getElementById('initials');
+var submitButton = document.getElementById('submit');
 var highscoreContainer = document.getElementById('highscore-container');
 var clearButton = document.getElementById('clear-button');
 var goBackButton = document.getElementById('goBack');
@@ -32,7 +33,7 @@ var codingQuestions = [
         choice2: "2. INCORRECT",
         choice3: "3. CORRECT",
         choice4: "4. INCORRECT",
-        correct: "choice3"
+        correct: "3"
     },
     {
         question: "Which answer is FALSE",
@@ -40,7 +41,7 @@ var codingQuestions = [
         choice2: "2. TRUE",
         choice3: "3. TRUE",
         choice4: "4. TRUE",
-        correct: "choice1"
+        correct: "1"
     },
     {
         question: "Which answer is says maybe",
@@ -48,7 +49,7 @@ var codingQuestions = [
         choice2: "2. ALWAYS",
         choice3: "3. ALWAYS",
         choice4: "4. MAYBE",
-        correct: "choice4"
+        correct: "4"
     },
     {
         question: "Number 1 is correct",
@@ -56,7 +57,7 @@ var codingQuestions = [
         choice2: "2. INCORRECT",
         choice3: "3. INCORRECT",
         choice4: "4. INCORRECT",
-        correct: "choice1"
+        correct: "1"
     },
     {
         question: "Number 2 is correct",
@@ -64,7 +65,7 @@ var codingQuestions = [
         choice2: "2. CORRECT",
         choice3: "3. INCORRECT",
         choice4: "4. INCORRECT",
-        correct: "choice2"
+        correct: "2"
     },
     {
         question: "Number 4 is correct",
@@ -72,7 +73,7 @@ var codingQuestions = [
         choice2: "2. INCORRECT",
         choice3: "3. INCORRECT",
         choice4: "4. CORRECT",
-        correct: "choice4"
+        correct: "4"
     },
     {
         question: "Number 2 is PERFECT",
@@ -80,7 +81,7 @@ var codingQuestions = [
         choice2: "2. PREFECT",
         choice3: "3. INCORRECT",
         choice4: "4. INCORRECT",
-        correct: "choice2"
+        correct: "2"
     },
     {
         question: "Number 1 is LOVE",
@@ -88,7 +89,7 @@ var codingQuestions = [
         choice2: "2. INCORRECT",
         choice3: "3. INCORRECT",
         choice4: "4. INCORRECT",
-        correct: "choice1"
+        correct: "1"
     },
     {
         question: "Number 1 is the best",
@@ -96,12 +97,12 @@ var codingQuestions = [
         choice2: "2. INCORRECT",
         choice3: "3. INCORRECT",
         choice4: "4. INCORRECT",
-        correct: "choice1"
+        correct: "1"
     },
 ];
 var counter = 0;
 var questionIndex = 0;
-var lastQuestion = codingQuestions.length - 1;
+// var lastQuestion = codingQuestions.length - 1;
 // init runs right as the window is opened
 startButton.addEventListener("click", startQuiz);
 
@@ -116,9 +117,9 @@ function startQuiz(){
     timerCount = 75;
     // make questions visible
      //need quizQuestions to pop up
-     questionDisplay();
+    questionDisplay();
     //need timer to start immediately
-    //quizProgress ();
+    //runQuiz ();
     startTimer();
     
 }
@@ -128,9 +129,9 @@ function startTimer(){
     timerCount--;
     timerElement.textContent = timerCount;
     if (timerCount ===0) {
-        alert("Time is up!")
+        // alert("Time is up!")
         clearInterval(timer);
-        gameOver();
+        showScore();
     }
 
   }, 1000);
@@ -146,44 +147,64 @@ function questionDisplay(){
     choice4.textContent = codingQuestions[counter].choice4
 };
 
-function quizProgress (choice){
-//     for (var questIndex = 0; questIndex <= lastQuestion; questIndex++){
-//         ProgressEvent.innerHTML += "<div class='prog' id="+ qIndex +"></div>";
-//     }
-//if choice is === correct say correct and show next question
-  if(codingQuestions[questionIndex].correct == choice){
-      questionIndex++
-      //say correct
-      //add 5 points
-  } else{}
-  // else say wrong, 
-  //subtract 10 seconds and show next question
-  //timerCount -=5;
+var i = 0, length = choices.length;
+for(i; i < length; i++){
+choices[i].addEventListener("click", function() {
+    var correctAnswer = codingQuestions[counter].correct
+
+    if (correctAnswer === this.getAttribute('data-id')) {
+        message.textContent = ("correct!")
+        // local storage add 5 points
+
+    } else {
+        message.textContent = ("incorrect")
+        timerCount = timerCount - 10
+    }
+
+    counter++;
+})
+// function runQuiz (){
+// //     for (var questIndex = 0; questIndex <= lastQuestion; questIndex++){
+// //         ProgressEvent.innerHTML += "<div class='prog' id="+ qIndex +"></div>";
+// //     }
+// //if choice is === correct say correct and show next question
+//   if(codingQuestions[questionIndex].correct == choice){
+//       questionIndex++
+//       //say correct
+//       //add 5 points
+//   } else{}
+//   // else say wrong, 
+//   //subtract 10 seconds and show next question
+//   //timerCount -=5;
+// }
+// }
+function showScore(){
+    timerContainer.style.display = 'none';
+    questionContainer.style.display = 'none';
 }
 
-function showScore(){}
 // localStorage.setItem()
 //
 //need to create a storedHighScores variable
-function getHighScores(){
-    //get stored array of intials and scores from client storage.
-    var storedHighScores = localStorage.getItem('highScores');
-    //if stored value doesn't exist, show nothing
-    if (storedHighScores === null) {
-        highScoreList = [];
-    }  else {
-      //   if intials and high scores are retrieved from client storage set highscore list to this array
-      highScoreList = storedHighScores
-    }
-    //render highScoreList to page
-    //**should i show it as an array or do two separate getHighScores and getInitals?
-    finalscoreContainer.textContent = highScoreList;
-  }
-function init(){
+// function getHighScores(){
+//     //get stored array of intials and scores from client storage.
+//     var storedHighScores = localStorage.getItem('highScores');
+//     //if stored value doesn't exist, show nothing
+//     if (storedHighScores === null) {
+//         highScoreList = [];
+//     }  else {
+//       //   if intials and high scores are retrieved from client storage set highscore list to this array
+//       highScoreList = storedHighScores
+//     }
+//     //render highScoreList to page
+//     //**should i show it as an array or do two separate getHighScores and getInitals?
+//     finalscoreContainer.textContent = highScoreList;
+//   }
+// function init(){
     
-        //**get previous high scores - should this be later on tho?
-        getHighScores()
-}
+//         //**get previous high scores - should this be later on tho?
+//         getHighScores()
+// }
 
 function resetGame(){}
 // will take you back to home screen with game instructions
@@ -195,34 +216,4 @@ function resetGame(){}
 // function quizQuestions(){}
 
 // function showScore(){}
-
-
-
-//display score at end if timer runs out or no more questions left
-//NEED TO UNDERSTAND HOW TO MAKE SUBMIT BUTTON AND HOW TO CALCULATE SCORE
-// submitButton.addEventListener('click', showScore);
-
-// i've been the questions in an array, is this a good idea?
-
-// do one div that holds all of our questions and just change what is displayed
-
-// function quizQuestions(){
-//     //this will store the html output
-//     var output = [];
-
-//     //for each question I need
-//     codingQuestions.forEach(
-//         (currentQuestion, questionNumber) => {
-
-//             //variable to store the list of possible answers
-//             var answers = [];
-
-//             // and for each available answer
-//             for (number in currentQuestion.answers){
-//                 answers.push(
-
-//                 )
-//             }
-//         }
-//     )
-// }
+}

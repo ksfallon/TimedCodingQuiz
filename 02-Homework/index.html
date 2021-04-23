@@ -23,23 +23,31 @@
       <div id = "question"> <p>Question</p> </div>
 
       <div id = "choices">
-          <button class="choice" id='choice1' onclick="checkAnswer('choice1');"></button>
+          <button class="choice" id='choice1' data-id ="1" onclick="checkAnswer('choice1');"></button>
 
-          <button class="choice" id='choice2' onclick="checkAnswer('choice2');"></button>
+          <button class="choice" id='choice2' data-id ="2" onclick="checkAnswer('choice2');"></button>
 
-          <button class="choice" id='choice3' onclick="checkAnswer('choice3');"></button>
+          <button class="choice" id='choice3' data-id ="3" onclick="checkAnswer('choice3');"></button>
 
-          <button class="choice" id='choice4' onclick="checkAnswer('choice4');"></button>
+          <button class="choice" id='choice4' data-id ="4" onclick="checkAnswer('choice4');"></button>
       </div>
 
     </div>
 
-    <div id="finalscore-container" style="display: none;">
-        <div id = finalscore>Your final score</div>
-        <input type ='text' name = 'intials' id = 'initials'>Enter Your Initials
+    <div id = "pointContainer">
+      <div class="score">0</div>
     </div>
 
-    </div id ='highscore-container'>
+    <div id="finalscore-container" style="display: none;">
+      <form method="post">
+        <h2 id = finalscore>Your final score ___ </h2>
+        <label for="input">Enter Your Initials</label>
+        <input type ='text' name = 'intials' id = 'initials'>
+      </form>
+      <button type ='button' id = 'submit'>Submit</button>
+    </div>
+
+    </div id ='highscore-container' style="display: none;">
       <button id ="clear-button" style="display: none;">Clear High Scores</button>
       <button id ="goBack" style="display: none;">Go Back</button>
     </div>
