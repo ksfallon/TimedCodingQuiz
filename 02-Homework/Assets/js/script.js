@@ -1,20 +1,20 @@
-var headerContainer = document.querySelector('.header-container');
-var startButton = document.querySelector('.start');
-var timerContainer = document.querySelector('.timer-container');
-var timerElement = document.querySelector('.timer-count');
-var questionContainer = document.querySelector('.question-container');
-var question = document.querySelector('#question');
+var headerContainer = document.getElementsByClassName('header-container');
+var startButton = document.getElementsByClassName('start');
+var timerContainer = document.getElementsByClassName('timer-container');
+var timerElement = document.getElementsByClassName('timer-count');
+var questionContainer = document.getElementsByClassName('question-container');
+var question = document.getElementById('question');
 var choice1 = document.getElementById('choice1');
 console.log("choice1", choice1)
 var choice2 = document.getElementById('choice2');
 var choice3 = document.getElementById('choice3');
 var choice4 = document.getElementById('choice4');
-var finalscoreContainer = document.querySelector('.finalscore-container')
-var finalScore = document.querySelector('finalscore');
-var playerInitials = document.querySelector('initials');
-var highscoreContainer = document.querySelector('.highscore-container');
-var clearButton = document.querySelector('clear-button');
-var goBackButton = document.querySelector('goBack');
+var finalscoreContainer = document.getElementsByClassName('.finalscore-container')
+var finalScore = document.getElementById('finalscore');
+var playerInitials = document.getElementById('initials');
+var highscoreContainer = document.getElementsByClassName('.highscore-container');
+var clearButton = document.getElementById('clear-button');
+var goBackButton = document.getElementById('goBack');
 
 var timer;
 var timerCount;
