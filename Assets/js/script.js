@@ -24,6 +24,7 @@ var timerCount;
 var storedHighScores = [];
 var intialList = '';
 var finalScores = '';
+var count = localStorage.getItem("count")
 
 // questions array for quiz: question, answers, correct answer
 var codingQuestions = [
@@ -156,10 +157,17 @@ for (let i = 0; i < choicesDiv.length; i++) {
     console.log('click');
     if (correctAnswer === this.getAttribute('data-id')) {
       message.textContent = 'correct!';
+      count = count + 10
+      localStorage.setItem("count", count);
       // window.localStorage.setItem('score + 5') ?
     } else {
-      message.textContent = 'incorrect';
-      timerCount = timerCount - 10;
+          message.textContent = 'incorrect';
+          timerCount = timerCount - 10;
+          if (count > 0) {
+            count = count - 2
+            localStorage.setItem("count", count);
+        }
+      //window.localStorage.setItem('score - 2')
     }
     questionIndex++;
     questionDisplay();
