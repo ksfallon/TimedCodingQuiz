@@ -12,7 +12,7 @@ var choice2El = document.getElementById('choiceTwo');
 var choice3El = document.getElementById('choiceThree');
 var choice4El = document.getElementById('choiceFour');
 var finalscoreContainer = document.getElementById('finalscore-container');
-var finalScore = document.getElementById('finalscore');
+var finalScore = document.getElementById('score');
 var playerInitials = document.getElementById('initials');
 var submitButton = document.getElementById('submit');
 var highscoreContainer = document.getElementById('highscore-container');
@@ -142,8 +142,10 @@ function questionDisplay() {
     //need final score plus input for intials to appear
     finalscoreContainer.style.display = 'block';
     // display final sccore and seconds left
-    finalScore.textContent = "Your Final Score: " + count + " seconds remaining";
+    finalScore.textContent = "Your Final Score: " + count + " With " + timerCount + " seconds remaining!";
     clearInterval(timer);
+    localHighScores();
+
 
   } else {
   var presentQuestion = codingQuestions[questionIndex];
@@ -171,10 +173,10 @@ for (let i = 0; i < choicesDiv.length; i++) {
     } else {
           message.textContent = 'incorrect';
           timerCount = timerCount - 10;
-          if (count > 0) {
+          // if (count > 0) {
             count = count - 3
             localStorage.setItem("count", count);
-        }
+        // }
       //window.localStorage.setItem('score - 3')
     }
     questionIndex++;
@@ -191,34 +193,30 @@ for (let i = 0; i < choicesDiv.length; i++) {
 //     questionContainer.style.display = 'none';
 // }
 
-// localStorage.setItem()
-//
-//need to create a storedHighScores variable
-// function getHighScores(){
-//     //get stored array of intials and scores from client storage.
-//     var storedHighScores = localStorage.getItem('highScores');
-//     //if stored value doesn't exist, show nothing
-//     if (storedHighScores === null) {
-//         highScoreList = [];
-//     }  else {
-//       //   if intials and high scores are retrieved from client storage set highscore list to this array
-//       highScoreList = storedHighScores
+function localHighScores(){
+  playerInitials = document.getElementById('intials').value;
+
+  var grabHighScores = JSON.parse(localStorage.getItem('count'));
+
+//if stored value doesn't exist, show nothing
+    if (storedHighScores === null) {
+         storedHighScores = [];
+     }  else {
+//       if intials and high scores are retrieved from client storage set highscore list to this array
+        storedHighScores = grabHighScores.concat([{
+
+          playerInitials: initials.trim(),
+
+          finalScore: count
+          
+        }])
 //     }
-//     //render highScoreList to page
-//     //**should i show it as an array or do two separate getHighScores and getInitals?
-//     finalscoreContainer.textContent = highScoreList;
-    
-//         //**get previous high scores - should this be later on tho?
-//         getHighScores()
-// }
 
-// function resetGame(){}
-// will take you back to home screen with game instructions
-//goBackButton.addEventListener('click', resetGame);
 
-//declare interval var at top of page
-//then set value to interval = setInterval(function(){})etc
-// clearInterval(name of the variable you want to stop)
-// function quizQuestions(){}
 
-// function showScore(){}
+  localStorage.setItem('count', JSON.stringify(grabHighScores))
+};
+}
+
+
+

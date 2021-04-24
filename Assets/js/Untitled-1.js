@@ -45,4 +45,27 @@ if(codingQuestions[questionIndex].correct == choice){
 // function quizQuestions(){}
 
 // function showScore(){}
-};
+//
+//need to create a storedHighScores variable
+// function getHighScores(){
+//     //get stored array of intials and scores from client storage.
+//     var storedHighScores = localStorage.getItem('highScores');
+//     
+//     //render highScoreList to page
+//     //**should i show it as an array or do two separate getHighScores and getInitals?
+//     finalscoreContainer.textContent = highScoreList;
+    
+//         //**get previous high scores - should this be later on tho?
+//         getHighScores()
+// }
+
+// function resetGame(){}
+// will take you back to home screen with game instructions
+//goBackButton.addEventListener('click', resetGame);
+
+//declare interval var at top of page
+//then set value to interval = setInterval(function(){})etc
+// clearInterval(name of the variable you want to stop)
+// function quizQuestions(){}
+
+// function showScore(){}
