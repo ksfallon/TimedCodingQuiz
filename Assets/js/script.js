@@ -11,7 +11,7 @@ var choice1El = document.getElementById('choiceOne');
 var choice2El = document.getElementById('choiceTwo');
 var choice3El = document.getElementById('choiceThree');
 var choice4El = document.getElementById('choiceFour');
-var finalscoreContainer = document.getElementById('finalscore-container');
+var finalScoreContainer = document.getElementById('finalscore-container');
 var finalScore = document.getElementById('score');
 var playerInitials = document.getElementById('initials');
 var submitButton = document.getElementById('submit');
@@ -19,10 +19,10 @@ var highScoreContainer = document.getElementsByClassName('highscore-container');
 var clearButton = document.getElementById('clear-button');
 var goBackButton = document.getElementById('goBack');
 var message = document.getElementById('message');
+var hSList = document.getElementById('list');
+
 var timer;
-var timerCount;
-var intialList = '';
-var finalScores = '';
+var tCounter;
 var currentScore = 0
 
 
@@ -105,52 +105,33 @@ var codingQuestions = [
 var userScore = document.getElementById("score")
 var storedHighScores 
 
+function renderHighScores() {
+  console.log('called render high scores');
+  var initialsAndScores = JSON.stringify(localStorage.getItem("highScores"));
+  console.log("string yet? " , initialsAndScores);
+  // hSList.textContent = initialsAndScores
+}
+
 function localHighScores() {
   var playerInitials = document.getElementById('initials').value;
   var grabHighScores = JSON.parse(localStorage.getItem('highScores'));
   console.log('grab high scores from local storage ', grabHighScores)
-console.log('the current score is ', currentScore)
+  console.log('the current score is ', currentScore)
+  
 
 var playerScore = { initials: playerInitials, score: currentScore}
 
 if (localStorage.getItem('highScores') === null) {
-  //storedHighScores = []
+  
   localStorage.setItem('highScores', JSON.stringify([playerScore]))
 } else {
   var storedHighScores = JSON.parse(localStorage.getItem('highScores'))
 
   localStorage.setItem('highScores', JSON.stringify(storedHighScores.concat([playerScore])) )
 }
+  //  renderHighScores();
 };
 
-// var playerInitials = document.getElementById('intials').value;
-
-// // must enter intials - need
-// if (playerInitials === ''){
-//   event.Default
-// }
-
-// function localHighScores(){
-//   playerInitials = document.getElementById('intials').value;
-
-
-// //if stored value doesn't exist, show nothing
-//     if (storedHighScores === null) {
-//          storedHighScores = [];
-//      }  else {
-// //       if intials and high scores are retrieved from client storage set highscore list to this array
-//         storedHighScores = grabHighScores.concat([{
-
-//           playerInitials: initials.trim(),
-
-//           finalScore: score
-          
-//         }])
-// //     }
-
-//   localStorage.setItem('score', JSON.stringify(grabHighScores))
-// };
-// }
 
 var questionIndex = 0;
 var lastQuestion = codingQuestions.length - 1;
@@ -158,47 +139,41 @@ var lastQuestion = codingQuestions.length - 1;
 startButton.addEventListener('click', startQuiz);
 
 function startQuiz() {
-  // hide starterCounter
+  // hide starterCounter and show questinContainer
   starterContainer.style.display = 'none';
-  //show first quiz question and answers
   questionContainer.style.display = 'block';
-  // click start button
-  timerCount = 75;
+  //tCounter = 75 - can this be done in global variable?
+  tCounter = 75;
   // make questions visible
-  //need quizQuestions to pop up
   questionDisplay();
   //need timer to start immediately
-  //runQuiz ();
   startTimer();
 }
 
 function startTimer() {
   timer = setInterval(function () {
-    timerCount--;
-    timerElement.textContent = timerCount;
-    if (timerCount === 0) {
+    tCounter--;
+    timerElement.textContent = tCounter;
+    if (tCounter <= 0) {
       clearInterval(timer)
-      // alert("Time is up!")
       questionContainer.style.display = 'none';
-      finalscoreContainer.style.display = 'block';
-    
+      finalScoreContainer.style.display = 'block';
     }
   }, 1000);
 }
-//show first question
+//displays questions and runs through them
 function questionDisplay() {
   
   // need the questions to go away on last question click and need final score and intial form to pop up
   if(questionIndex > lastQuestion){
     //need questions to disappear
     questionContainer.style.display = 'none';
-    //need final score plus input for intials to appear
-    finalscoreContainer.style.display = 'block';
-    timerElement.style.display = 'none';
     // display final sccore and seconds left
-    finalScore.innerHTML = "Your Final Score: " + currentScore + " With " + timerCount + " seconds remaining!";
+    finalScore.innerHTML = "Your Final Score: " + currentScore + " With " + tCounter + " seconds remaining!";
     localStorage.setItem
     clearInterval(timer);
+    localHighScores();
+    finalScoreContainer.style.display = 'block';
 
   } else {
   var presentQuestion = codingQuestions[questionIndex];
@@ -224,7 +199,7 @@ for (let i = 0; i < choicesDiv.length; i++) {
       // window.localStorage.setItem('score + 5') ?
     } else {
           message.textContent = 'incorrect';
-          timerCount = timerCount - 10;
+          tCounter = tCounter - 10;
           // if (count > 0) {
             currentScore = currentScore - 3
     }
@@ -238,7 +213,7 @@ submitButton.addEventListener("click", function (event){
   event.preventDefault();
   
   localHighScores();
-  finalscoreContainer.style.display = 'none';
+  // finalscoreContainer.style.display = 'none';
   // timerContainer.style.display = 'none';
   // highScoreContainer.style.display = 'block';
 })
