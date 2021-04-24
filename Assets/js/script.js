@@ -127,8 +127,11 @@ function startTimer() {
     timerCount--;
     timerElement.textContent = timerCount;
     if (timerCount === 0) {
+      clearInterval(timer)
       // alert("Time is up!")
-      showScore();
+      questionContainer.style.display = 'none';
+      finalscoreContainer.style.display = 'block';
+    
     }
   }, 1000);
 }
@@ -141,8 +144,9 @@ function questionDisplay() {
     questionContainer.style.display = 'none';
     //need final score plus input for intials to appear
     finalscoreContainer.style.display = 'block';
+    timerElement.style.display = 'none';
     // display final sccore and seconds left
-    finalScore.textContent = "Your Final Score: " + count + " With " + timerCount + " seconds remaining!";
+    finalScore.innerHTML = "Your Final Score: " + count + " With " + timerCount + " seconds remaining!";
     clearInterval(timer);
     localHighScores();
 
@@ -160,6 +164,8 @@ function questionDisplay() {
   }
 }
 
+storedHighScores[0] = ("Initials: ", playerInitials, " Score: ", count);
+
 for (let i = 0; i < choicesDiv.length; i++) {
   choicesDiv[i].addEventListener('click', function () {
     var correctAnswer = codingQuestions[questionIndex].correct;
@@ -168,14 +174,14 @@ for (let i = 0; i < choicesDiv.length; i++) {
     if (correctAnswer === this.getAttribute('data-id')) {
       message.textContent = 'correct!';
       count = count + 10
-      localStorage.setItem("count", count);
+      localStorage.setItem("Score:", JSON.stringify(count));
       // window.localStorage.setItem('score + 5') ?
     } else {
           message.textContent = 'incorrect';
           timerCount = timerCount - 10;
           // if (count > 0) {
             count = count - 3
-            localStorage.setItem("count", count);
+            localStorage.setItem("Score:", JSON.stringify(count));
         // }
       //window.localStorage.setItem('score - 3')
     }
@@ -192,6 +198,21 @@ for (let i = 0; i < choicesDiv.length; i++) {
 //     timerContainer.style.display = 'none';
 //     questionContainer.style.display = 'none';
 // }
+
+submitButton.addEventListener("click", function userScore(event){
+  
+  finalscoreContainer.style.display = 'none';
+  timerContainer.style.display = 'none';
+  highScoreContainer.style.display = 'block';
+
+  var playerInitials = document.getElementById('intials').value;
+
+  // must enter intials - need
+  if (playerInitials === ''){
+    event.Default
+  }
+
+})
 
 function localHighScores(){
   playerInitials = document.getElementById('intials').value;
