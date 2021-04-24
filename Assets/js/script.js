@@ -200,6 +200,7 @@ for (let i = 0; i < choicesDiv.length; i++) {
 // }
 
 submitButton.addEventListener("click", function userScore(event){
+  event.preventDefault();
   
   finalscoreContainer.style.display = 'none';
   timerContainer.style.display = 'none';
