@@ -21,10 +21,8 @@ var goBackButton = document.getElementById('goBack');
 var message = document.getElementById('message');
 var timer;
 var timerCount;
-var storedHighScores = [];
 var intialList = '';
 var finalScores = '';
-var count = localStorage.getItem("count")
 
 // questions array for quiz: question, answers, correct answer
 var codingQuestions = [
@@ -102,6 +100,17 @@ var codingQuestions = [
   },
 ];
 
+var userScore = document.getElementById("score")
+var storedHighScores 
+
+function localHighScores() {
+if (localStorage.getItem('highScores') === null) {
+  storedHighScores = []
+} else {
+  scores = JSON.parse(localStorage.getItem('highscores'))
+}
+};
+
 var questionIndex = 0;
 var lastQuestion = codingQuestions.length - 1;
 
@@ -146,7 +155,7 @@ function questionDisplay() {
     finalscoreContainer.style.display = 'block';
     timerElement.style.display = 'none';
     // display final sccore and seconds left
-    finalScore.innerHTML = "Your Final Score: " + count + " With " + timerCount + " seconds remaining!";
+    finalScore.innerHTML = "Your Final Score: " + currentScore + " With " + timerCount + " seconds remaining!";
     clearInterval(timer);
     localHighScores();
 
@@ -164,8 +173,7 @@ function questionDisplay() {
   }
 }
 
-storedHighScores[0] = ("Initials: ", playerInitials, " Score: ", count);
-
+var currentScore =0
 for (let i = 0; i < choicesDiv.length; i++) {
   choicesDiv[i].addEventListener('click', function () {
     var correctAnswer = codingQuestions[questionIndex].correct;
@@ -173,15 +181,13 @@ for (let i = 0; i < choicesDiv.length; i++) {
     console.log('click');
     if (correctAnswer === this.getAttribute('data-id')) {
       message.textContent = 'correct!';
-      count = count + 10
-      localStorage.setItem("Score:", JSON.stringify(count));
+      currentScore = currentScore + 10
       // window.localStorage.setItem('score + 5') ?
     } else {
           message.textContent = 'incorrect';
           timerCount = timerCount - 10;
           // if (count > 0) {
-            count = count - 3
-            localStorage.setItem("Score:", JSON.stringify(count));
+            currentScore = currentScore - 3
         // }
       //window.localStorage.setItem('score - 3')
     }
@@ -189,6 +195,7 @@ for (let i = 0; i < choicesDiv.length; i++) {
     questionDisplay();
   });
 }
+
 
  //display score at end if timer runs out or no more questions left
 //NEED TO UNDERSTAND HOW TO MAKE SUBMIT BUTTON AND HOW TO CALCULATE SCORE
@@ -201,7 +208,7 @@ for (let i = 0; i < choicesDiv.length; i++) {
 
 submitButton.addEventListener("click", function userScore(event){
   event.preventDefault();
-  
+
   finalscoreContainer.style.display = 'none';
   timerContainer.style.display = 'none';
   highScoreContainer.style.display = 'block';
@@ -229,14 +236,14 @@ function localHighScores(){
 
           playerInitials: initials.trim(),
 
-          finalScore: count
+          finalScore: score
           
         }])
 //     }
 
 
 
-  localStorage.setItem('count', JSON.stringify(grabHighScores))
+  localStorage.setItem('score', JSON.stringify(grabHighScores))
 };
 }
 
