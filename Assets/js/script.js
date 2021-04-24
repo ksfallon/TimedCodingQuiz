@@ -1,6 +1,6 @@
-var headerContainer = document.getElementById('header-container');
+var starterContainer = document.getElementById('starter-container');
 var startButton = document.getElementById('start');
-var timerContainer = document.getElementById('timer-container');
+// var timerContainer = document.getElementById('timer-container');
 var timerElement = document.getElementById('timer-count');
 var questionContainer = document.getElementById('question-container');
 var questionEl = document.getElementById('question');
@@ -37,7 +37,7 @@ var codingQuestions = [
     correct: '3',
   },
   {
-    question: 'The condition in an if / else statement is enclosed withing ____.',
+    question: 'The condition in an if / else statement is enclosed within ____.',
     choice1: '1. parentheses',
     choice2: '2. quotes',
     choice3: '3. curly brackets',
@@ -101,16 +101,15 @@ var codingQuestions = [
     correct: '1',
   },
 ];
-// var counter = 0;
+
 var questionIndex = 0;
 var lastQuestion = codingQuestions.length - 1;
-// var lastQuestion = codingQuestions.length - 1;
-// init runs right as the window is opened
+
 startButton.addEventListener('click', startQuiz);
 
 function startQuiz() {
-  // hide headerCounter
-  headerContainer.style.display = 'none';
+  // hide starterCounter
+  starterContainer.style.display = 'none';
   //show first quiz question and answers
   questionContainer.style.display = 'block';
   // click start button
@@ -129,21 +128,31 @@ function startTimer() {
     timerElement.textContent = timerCount;
     if (timerCount === 0) {
       // alert("Time is up!")
-      clearInterval(timer);
       showScore();
     }
   }, 1000);
 }
 //show first question
 function questionDisplay() {
-  var presentQuestion = codingQuestions[questionIndex];
+  
+  // need the questions to go away on last question click and need final score and intial form to pop up
+  if(questionIndex > lastQuestion){
+    //need questions to disappear
+    questionContainer.style.display = 'none';
+    //need final score plus input for intials to appear
+    finalscoreContainer.style.display = 'block';
+    // display final sccore and seconds left
+    finalScore.textContent = "Your Final Score: " + count + " seconds remaining";
+    clearInterval(timer);
 
+  } else {
+  var presentQuestion = codingQuestions[questionIndex];
   questionEl.textContent = presentQuestion.question;
   choice1El.textContent = presentQuestion.choice1;
   choice2El.textContent = presentQuestion.choice2;
   choice3El.textContent = presentQuestion.choice3;
   choice4El.textContent = presentQuestion.choice4;
-
+}
   for (var i = 0; i < lastQuestion; i++) {
     //each time i choose a button/question i'm sent to the next question in 3 secs
   }

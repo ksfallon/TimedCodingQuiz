@@ -8,15 +8,18 @@
     <title>Timed Coding Quiz</title>
 </head>
 <body>
-    <header id="header-container">
+
+    <header>
+        <nav>
+            <a href=#highscore-container>High Score</a>
+            <span id = "timer-count">Time: 0</span>
+        </nav>
+    </header>
+
+    <div id="starter-container">
         <h1 id="game-title">Coding Quiz Challenge</h1>
         <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penzlize your score/time by ten seconds!</p>
         <button id="start">Start Quiz</button>
-    </header>
-​
-    <div id ="timer-container">
-      <p>Time: </p>
-      <div id = "timer-count">Time: 0</div>
     </div>
 ​
     <div id="question-container" style="display: none;">
@@ -42,11 +45,11 @@
 ​
     <div id="finalscore-container" style="display: none;">
       <h1>All Done!</h1>
-      <form method="post">
-        <h2 id = finalscore>Your final score ___ </h2>
-        <label for="input">Enter Your Initials</label>
-        <input type ='text' name = 'intials' id = 'initials'>
-      </form>
+      <p id ="finalscore">Your final score is: <span id ="score"></span></p>
+        <form method="POST">
+          <label for="input">Enter Your Initials</label>
+          <input type ='text' name = 'intials' id = 'initials'>
+        </form>
       <button type ='button' id = 'submit'>Submit</button>
     </div>
 ​
