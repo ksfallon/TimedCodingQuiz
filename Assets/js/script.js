@@ -109,7 +109,7 @@ function renderHighScores() {
   console.log('called render high scores');
   var initialsAndScores = JSON.stringify(localStorage.getItem("highScores"));
   console.log("string yet? " , initialsAndScores);
-  // hSList.textContent = initialsAndScores
+  hSList.textContent = initialsAndScores
 }
 
 function localHighScores() {
@@ -129,7 +129,7 @@ if (localStorage.getItem('highScores') === null) {
 
   localStorage.setItem('highScores', JSON.stringify(storedHighScores.concat([playerScore])) )
 }
-  //  renderHighScores();
+  renderHighScores();
 };
 
 
@@ -213,9 +213,8 @@ submitButton.addEventListener("click", function (event){
   event.preventDefault();
   
   localHighScores();
-  // finalscoreContainer.style.display = 'none';
-  // timerContainer.style.display = 'none';
-  // highScoreContainer.style.display = 'block';
+  window.location.replace("highscores.html")
+  
 })
 
 
