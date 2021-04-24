@@ -29,43 +29,43 @@ var count = localStorage.getItem("count")
 // questions array for quiz: question, answers, correct answer
 var codingQuestions = [
   {
-    question: 'Which answer is correct',
-    choice1: '1. INCORRECT',
-    choice2: '2. INCORRECT',
-    choice3: '3. CORRECT',
-    choice4: '4. INCORRECT',
+    question: 'Commonly used data types DO NOT include:',
+    choice1: '1. strings',
+    choice2: '2. booleans',
+    choice3: '3. alerts',
+    choice4: '4. numbers',
     correct: '3',
   },
   {
-    question: 'Which answer is FALSE',
-    choice1: '1. FALSE',
-    choice2: '2. TRUE',
-    choice3: '3. TRUE',
-    choice4: '4. TRUE',
+    question: 'The condition in an if / else statement is enclosed withing ____.',
+    choice1: '1. parentheses',
+    choice2: '2. quotes',
+    choice3: '3. curly brackets',
+    choice4: '4. square brackets',
     correct: '1',
   },
   {
-    question: 'Which answer is says maybe',
-    choice1: '1. ALWAYS',
-    choice2: '2. ALWAYS',
-    choice3: '3. ALWAYS',
-    choice4: '4. MAYBE',
+    question: 'Arrays in JavaScript can be used to store ____.',
+    choice1: '1. numbers and strings',
+    choice2: '2. other arrays',
+    choice3: '3. booleans',
+    choice4: '4. all the above',
     correct: '4',
   },
   {
-    question: 'Number 1 is correct',
-    choice1: '1. CORRECT',
-    choice2: '2. INCORRECT',
-    choice3: '3. INCORRECT',
-    choice4: '4. INCORRECT',
+    question: 'String values must be enclosed within ____ when being assigned to variables.',
+    choice1: '1. quotes',
+    choice2: '2. commas',
+    choice3: '3. curly brackets',
+    choice4: '4. parentheses',
     correct: '1',
   },
   {
-    question: 'Number 2 is correct',
-    choice1: '1. INCORRECT',
-    choice2: '2. CORRECT',
-    choice3: '3. INCORRECT',
-    choice4: '4. INCORRECT',
+    question: 'A very useful tool used during development and debugging for printing content to the debugger is:',
+    choice1: '1. JavaScript',
+    choice2: '2. consol.log',
+    choice3: '3. for loops',
+    choice4: '4. terminal / bash',
     correct: '2',
   },
   {
@@ -86,7 +86,7 @@ var codingQuestions = [
   },
   {
     question: 'Number 1 is LOVE',
-    choices1: '1. LOVE',
+    choice1: '1. LOVE',
     choice2: '2. INCORRECT',
     choice3: '3. INCORRECT',
     choice4: '4. INCORRECT',
@@ -111,8 +111,7 @@ startButton.addEventListener('click', startQuiz);
 function startQuiz() {
   // hide headerCounter
   headerContainer.style.display = 'none';
-  //show timer
-  timerContainer.style.display = 'block';
+  //show first quiz question and answers
   questionContainer.style.display = 'block';
   // click start button
   timerCount = 75;
@@ -164,12 +163,53 @@ for (let i = 0; i < choicesDiv.length; i++) {
           message.textContent = 'incorrect';
           timerCount = timerCount - 10;
           if (count > 0) {
-            count = count - 2
+            count = count - 3
             localStorage.setItem("count", count);
         }
-      //window.localStorage.setItem('score - 2')
+      //window.localStorage.setItem('score - 3')
     }
     questionIndex++;
     questionDisplay();
   });
 }
+
+ //display score at end if timer runs out or no more questions left
+//NEED TO UNDERSTAND HOW TO MAKE SUBMIT BUTTON AND HOW TO CALCULATE SCORE
+// submitButton.addEventListener('click', showScore);
+
+// function showScore(){
+//     timerContainer.style.display = 'none';
+//     questionContainer.style.display = 'none';
+// }
+
+// localStorage.setItem()
+//
+//need to create a storedHighScores variable
+// function getHighScores(){
+//     //get stored array of intials and scores from client storage.
+//     var storedHighScores = localStorage.getItem('highScores');
+//     //if stored value doesn't exist, show nothing
+//     if (storedHighScores === null) {
+//         highScoreList = [];
+//     }  else {
+//       //   if intials and high scores are retrieved from client storage set highscore list to this array
+//       highScoreList = storedHighScores
+//     }
+//     //render highScoreList to page
+//     //**should i show it as an array or do two separate getHighScores and getInitals?
+//     finalscoreContainer.textContent = highScoreList;
+    
+//         //**get previous high scores - should this be later on tho?
+//         getHighScores()
+// }
+
+// function resetGame(){}
+// will take you back to home screen with game instructions
+//goBackButton.addEventListener('click', resetGame);
+
+//declare interval var at top of page
+//then set value to interval = setInterval(function(){})etc
+// clearInterval(name of the variable you want to stop)
+// function quizQuestions(){}
+
+// function showScore(){}

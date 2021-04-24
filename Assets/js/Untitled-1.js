@@ -9,45 +9,6 @@ if(codingQuestions[questionIndex].correct == choice){
 //NEED TO UNDERSTAND HOW TO MAKE SUBMIT BUTTON AND HOW TO CALCULATE SCORE
 // submitButton.addEventListener('click', showScore);
 
-// i've been the questions in an array, is this a good idea?
-
-// do one div that holds all of our questions and just change what is displayed
-
-// function quizQuestions(){
-//     //this will store the html output
-//     var output = [];
-
-//     //for each question I need
-//     codingQuestions.forEach(
-//         (currentQuestion, questionNumber) => {
-
-//             //variable to store the list of possible answers
-//             var answers = [];
-
-//             // and for each available answer
-//             for (number in currentQuestion.answers){
-//                 answers.push(
-
-//                 )
-//             }
-//         }
-
-//
-// function runQuiz (){
-// //     for (var questIndex = 0; questIndex <= lastQuestion; questIndex++){
-// //         ProgressEvent.innerHTML += "<div class='prog' id="+ qIndex +"></div>";
-// //     }
-// //if choice is === correct say correct and show next question
-//   if(codingQuestions[questionIndex].correct == choice){
-//       questionIndex++
-//       //say correct
-//       //add 5 points
-//   } else{}
-//   // else say wrong, 
-//   //subtract 10 seconds and show next question
-//   //timerCount -=5;
-// }
-// }
 // function showScore(){
 //     timerContainer.style.display = 'none';
 //     questionContainer.style.display = 'none';
