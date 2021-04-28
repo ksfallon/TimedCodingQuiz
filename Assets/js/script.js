@@ -105,16 +105,18 @@ var codingQuestions = [
 var userScore = document.getElementById("score")
 var storedHighScores 
 
-function renderHighScores() {
-  console.log('called render high scores');
-  var initialsAndScores = JSON.stringify(localStorage.getItem("highScores"));
-  console.log("string yet? " , initialsAndScores);
-  hSList.textContent = initialsAndScores
+function renderHighScores(initials, score) {
+  // console.log('called render high scores');
+  // var initialsAndScores = JSON.parse(localStorage.getItem("highScores"));
+  // console.log("string yet? " , initialsAndScores);
+  var listTag = document.createElement("li")
+  listTag.textContent = initials + " - " + score
+  hSList.appendChild(listTag)
 }
 
 function localHighScores() {
-  var playerInitials = document.getElementById('initials').value;
-  var grabHighScores = JSON.parse(localStorage.getItem('highScores'));
+  // var playerInitials = document.getElementById('initials').value;
+  // var grabHighScores = JSON.parse(localStorage.getItem('highScores'));
   console.log('grab high scores from local storage ', grabHighScores)
   console.log('the current score is ', currentScore)
   
@@ -129,9 +131,22 @@ if (localStorage.getItem('highScores') === null) {
 
   localStorage.setItem('highScores', JSON.stringify(storedHighScores.concat([playerScore])) )
 }
-  renderHighScores();
+  renderHighScores(playerInitials, currentScore);
 };
 
+// function that gets your scores, sorts the scores, creates a li tag for each high score and then displays it on the page.
+function highScoresList() {
+  var highScore = JSON.parse(localStorage.getItem('highScores'))
+  var playerInitials = document.getElementById('initials').value;
+  var grabHighScores = currentScore;//change this to grab currentScore
+
+  var playerScore = { initials: playerInitials, score: grabHighScores}
+
+  highScore.push(playerScore);
+
+  window.localStorage.setItem('highScores', JSON.stringify(highScore))
+
+}
 
 var questionIndex = 0;
 var lastQuestion = codingQuestions.length - 1;
